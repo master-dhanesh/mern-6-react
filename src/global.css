@@ -1,0 +1,14 @@
+ul {
+    width: 50vmax;
+    padding: 1vmax;
+    list-style: none;
+    font-family: "Gilroy";
+}
+
+li {
+    background-color: aliceblue;
+    display: flex;
+    justify-content: space-between;
+    padding: 1vmax;
+    margin-bottom: 1vmax;
+}

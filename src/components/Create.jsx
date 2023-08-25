@@ -1,10 +1,16 @@
-import React, { useState } from "react";
-
+import "../global.css";
 const Create = (props) => {
     // console.log(props);
-    const { users, setusers } = props;
-    const [username, setusername] = useState("");
-    const [skill, setskill] = useState("");
+    const {
+        users,
+        setusers,
+        active,
+        setActive,
+        username,
+        setusername,
+        skill,
+        setskill,
+    } = props;
 
     const SubmitHandler = (event) => {
         event.preventDefault();
@@ -19,21 +25,59 @@ const Create = (props) => {
         setskill("");
     };
 
+    const UpdateHandler = (e) => {
+        e.preventDefault();
+        const copyusers = [...users];
+        copyusers[active] = { ...copyusers[active], username, skill };
+        setusers(copyusers);
+        setusername("");
+        setskill("");
+        setActive(null);
+    };
+
     return (
-        <form onSubmit={SubmitHandler}>
+        <form className="container">
             <input
+                className="form-control mb-3"
                 onChange={(e) => setusername(e.target.value)}
                 value={username}
                 type="text"
                 placeholder="username"
             />
             <input
+                className="form-control mb-3"
                 onChange={(e) => setskill(e.target.value)}
                 value={skill}
                 type="text"
                 placeholder="skill"
             />
-            <button>Submit</button>
+
+            {active === null ? (
+                <button
+                    onClick={SubmitHandler}
+                    className="btn"
+                    style={{
+                        backgroundColor: "tomato",
+                        color: "white",
+                        border: "none",
+                        padding: "1vmax",
+                    }}
+                >
+                    Submit
+                </button>
+            ) : (
+                <button
+                    onClick={UpdateHandler}
+                    className="btn btn-danger"
+                    style={{
+                        color: "white",
+                        border: "none",
+                        padding: "1vmax",
+                    }}
+                >
+                    Update
+                </button>
+            )}
         </form>
     );
 };
