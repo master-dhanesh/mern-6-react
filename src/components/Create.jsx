@@ -1,6 +1,7 @@
+import { useContext } from "react";
 import "../global.css";
-const Create = (props) => {
-    // console.log(props);
+import { UserContext } from "../utils/Context";
+const Create = () => {
     const {
         users,
         setusers,
@@ -10,7 +11,7 @@ const Create = (props) => {
         setusername,
         skill,
         setskill,
-    } = props;
+    } = useContext(UserContext);
 
     const SubmitHandler = (event) => {
         event.preventDefault();
@@ -20,7 +21,6 @@ const Create = (props) => {
         // copyusers.push(user);
         // setusers(copyusers);
         setusers([...users, user]);
-
         setusername("");
         setskill("");
     };
