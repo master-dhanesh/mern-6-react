@@ -1,7 +1,10 @@
 import { useContext } from "react";
 import "../global.css";
 import { UserContext } from "../utils/Context";
+import { useNavigate } from "react-router-dom";
 const Create = () => {
+    const navigate = useNavigate();
+
     const {
         users,
         setusers,
@@ -23,6 +26,7 @@ const Create = () => {
         setusers([...users, user]);
         setusername("");
         setskill("");
+        navigate("/show");
     };
 
     const UpdateHandler = (e) => {
@@ -33,10 +37,12 @@ const Create = () => {
         setusername("");
         setskill("");
         setActive(null);
+        navigate("/show");
     };
 
     return (
-        <form className="container">
+        <form className="w-50">
+            <h3>Create Tasks...</h3>
             <input
                 className="form-control mb-3"
                 onChange={(e) => setusername(e.target.value)}
