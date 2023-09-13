@@ -1,15 +1,17 @@
-import { useDispatch, useSelector } from "react-redux";
-import { increment, decrement } from "./store/reducers/counterReducer";
-const App = () => {
-    const { value } = useSelector((state) => state.counterReducer);
-    const dispatch = useDispatch();
+import React from "react";
+import { Route, Routes } from "react-router-dom";
+import Home from "./Components/Home";
+import Config from "./Components/Config";
+import Quiz from "./Components/Quiz";
 
+const App = () => {
     return (
-        <div className="container mt-5">
-            <h2>Redux Toolkit Instance</h2>
-            <h1>Value: {value}</h1>
-            <button onClick={() => dispatch(increment(1))}>Add 1</button>
-            <button onClick={() => dispatch(decrement(1))}>Sun 1</button>
+        <div className="container mt-5 p-5">
+            <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/config" element={<Config />} />
+                <Route path="/quiz" element={<Quiz />} />
+            </Routes>
         </div>
     );
 };
