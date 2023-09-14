@@ -1,8 +1,12 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import { getquery } from "../store/actions/quizActions";
 
 const Config = () => {
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
     const [amount, setAmount] = useState("");
     const [category, setCategory] = useState("");
     const [difficulty, setDifficulty] = useState("");
@@ -35,8 +39,8 @@ const Config = () => {
             type,
         };
         console.log(config);
-        //dispatch action and send config to payload
-        // navigate to start quiz
+        dispatch(getquery(config));
+        navigate("/quiz");
     };
 
     let c_render = "";
@@ -85,7 +89,7 @@ const Config = () => {
                     className="form-control mb-3"
                 >
                     <option value="">Any Type</option>
-                    <option value="multiple choice">Multiple Choice</option>
+                    <option value="multiplechoice">Multiple Choice</option>
                     <option value="boolean">True/False</option>
                 </select>
                 <button className="btn btn-primary">Start Quiz</button>
