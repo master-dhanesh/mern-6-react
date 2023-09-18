@@ -40,8 +40,6 @@ const Quiz = () => {
                 ],
                 []
             );
-            console.log(quizdata);
-
             setquiz(quizdata);
         } catch (error) {
             console.log(error);
@@ -58,7 +56,18 @@ const Quiz = () => {
 
     const QuizHandler = (e) => {
         e.preventDefault();
-        console.log(userAnswer);
+        let onlyanswers = [];
+        userAnswer.forEach((a, i) => {
+            for (const key in a) {
+                onlyanswers.push(a[key]);
+            }
+        });
+        // console.log(onlyanswers);
+        const score = quiz.filter((q, i) => {
+            // console.log(q.answer, onlyanswers[i]);
+            return q.answer === onlyanswers[i];
+        });
+        alert(`You scored: ${score.length}`);
     };
 
     let quizrender = "";

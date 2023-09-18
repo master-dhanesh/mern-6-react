@@ -20,7 +20,7 @@ const Config = () => {
                 "https://opentdb.com/api_category.php"
             );
             setallcategories(data.trivia_categories);
-            console.log(data.trivia_categories);
+            // console.log(data.trivia_categories);
         } catch (error) {
             console.log(error);
         }
@@ -38,7 +38,7 @@ const Config = () => {
             difficulty,
             type,
         };
-        console.log(config);
+        // console.log(config);
         dispatch(getquery(config));
         navigate("/quiz");
     };
